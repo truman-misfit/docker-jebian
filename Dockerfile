@@ -4,7 +4,8 @@ MAINTAINER Truman Woo <chunan.woo@gmail.com>
 # Update apt source && install necessary tools
 RUN echo "deb http://mirrors.163.com/debian/ stable main" > /etc/apt/sources.list \
  && echo "deb-src http://mirrors.163.com/debian/ stable main" >> /etc/apt/sources.list
-RUN apt-get update
+RUN apt-get update -y
+RUN apt-get upgrade -y
 RUN apt-get install -y curl
 RUN apt-get install -y unzip
 
