@@ -25,3 +25,27 @@ RUN curl \
     && rm -rf $JAVA_HOME/man
 
 ENV PATH ${PATH}:${JAVA_HOME}/bin
+
+# Install Scala & SBT
+ENV SCALA_VERSION 2.11.6
+ENV SBT_VERSION 0.13.8
+
+# Install Scala
+RUN \
+  cd /root && \
+  curl -o scala-$SCALA_VERSION.tgz http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz && \
+  tar -xf scala-$SCALA_VERSION.tgz && \
+  rm scala-$SCALA_VERSION.tgz && \
+  echo >> /root/.bashrc && \
+  echo 'export PATH=~/scala-$SCALA_VERSION/bin:$PATH' >> /root/.bashrc
+
+
+# Install sbt
+COPY sbt-launch.jar /usr/local/bin/
+COPY sbt /usr/local/bin/
+
+RUN \
+  chmod u+x /usr/local/bin/sbt
+
+# Define work directory
+WORKDIR /
