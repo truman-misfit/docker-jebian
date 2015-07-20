@@ -49,3 +49,9 @@ RUN \
 
 # Define work directory
 WORKDIR /
+
+# Pre-load demo dependencies into this image
+RUN mkdir -p /src/tmp/
+ADD aws-demo/* /src/tmp
+RUN cd /src/tmp && \
+    sbt dist
