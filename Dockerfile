@@ -52,7 +52,7 @@ WORKDIR /
 
 # Pre-load demo dependencies into this image
 RUN mkdir -p /src/tmp/
-ADD build.sbt /src/tmp
+ADD build.sbt /src/tmp/
 RUN cd /src/tmp && \
     sbt compile && \
     cd /src && \
